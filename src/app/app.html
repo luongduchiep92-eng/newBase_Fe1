@@ -1,0 +1,29 @@
+<nav class="bg-blue-600 text-white shadow">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="#" class="text-xl font-semibold">
+      <strong>WEB2081 Angular</strong>
+    </a>
+
+    <div class="hidden md:flex items-center space-x-8">
+      <a href="/stories" class="hover:text-gray-200">Trang chủ</a>
+      <a href="/stories" class="hover:text-gray-200">Danh sách</a>
+      <a href="/add-story" class="hover:text-gray-200">Thêm mới</a>
+    </div>
+
+    <div class="hidden md:flex items-center space-x-6">
+      <a href="/login" class="hover:text-gray-200">Đăng nhập</a>
+      <a href="/register" class="hover:text-gray-200">Đăng ký</a>
+      <a
+        routerLink="/contact"
+        routerLinkActive="active"
+        class="hover:text-gray-200"
+        >Liên hệ</a
+      >
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-6xl mx-auto mt-10 px-4 text-center">
+  <h1 class="text-4xl font-bold mb-4">Chào mừng đến với WEB2081 Angular</h1>
+  <router-outlet></router-outlet>
+</div>

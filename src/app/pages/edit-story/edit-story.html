@@ -1,0 +1,74 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-6">Sửa sách</h1>
+
+  <form class="space-y-6" [formGroup]="editForm" (ngSubmit)="submitForm()">
+    <div>
+      <label class="block font-medium mb-1">Tiêu đề</label>
+      <input
+        type="text"
+        formControlName="title"
+        class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      @if(editForm.get('title')?.touched && editForm.get('title')?.errors){
+        <p class="text-red-500">Tiêu đề phải 5 kí tự trở lên</p>
+      }
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Tác giả</label>
+      <input
+        type="text"
+        formControlName="author"
+        class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      @if(editForm.get('author')?.touched && editForm.get('author')?.errors){
+        <p class="text-red-500">Tác giả không được để trống</p>
+      }
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Ảnh</label>
+      <input
+        type="text"
+        formControlName="image"
+        class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      @if(editForm.value.image){
+        <img [src]="editForm.value.image" class="mt-2 w-32 rounded">
+      }
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Thể loại</label>
+      <select
+        formControlName="genre"
+        class="w-full border rounded-lg px-3 py-2 text-center"
+      >
+        <option value="">--Chọn--</option>
+        <option value="action">Action</option>
+        <option value="manhua">Manhua</option>
+        <option value="manga">Manga</option>
+        <option value="adventure">Adventure</option>
+        <option value="comedy-sci-fi">Comedy / Sci-fi</option>
+        <option value="dark-fantasy">Dark Fantasy</option>
+        <option value="supernatural">Supernatural</option>
+      </select>
+
+      @if(editForm.get('genre')?.touched && editForm.get('genre')?.errors){
+        <p class="text-red-500">Vui lòng chọn thể loại</p>
+      }
+    </div>
+    <div>
+      <label class="block font-medium mb-1">Năm xuất bản</label>
+      <input
+        type="text"
+        formControlName="year"
+        class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+    <button
+      type="submit"
+      [disabled]="editForm.invalid || loading"
+      class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+    >
+      {{ loading ? 'Đang cập nhật...' : 'Cập nhật' }}
+    </button>
+  </form>
+</div>

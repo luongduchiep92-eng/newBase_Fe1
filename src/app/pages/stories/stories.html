@@ -1,0 +1,58 @@
+<div class="p-6">
+  <h1 class="text-2xl font-semibold mb-6">Danh sách</h1>
+  @if(loading) {
+    <p>Đang tải...</p>
+  }
+  @if(!loading && stories.length === 0) {
+    <p>Không có dữ liệu</p>
+  }
+  @if(!loading && stories.length > 0) {
+  <div class="overflow-x-auto">
+    <table class="w-full border border-gray-300 rounded-lg">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-2 border border-gray-300 text-center">Ảnh</th>
+          <th class="px-4 py-2 border border-gray-300 text-center">Tiêu đề</th>
+          <th class="px-4 py-2 border border-gray-300 text-center">Tác giả</th>
+          <th class="px-4 py-2 border border-gray-300 text-center">Năm xuất bản</th>
+          <th class="px-4 py-2 border border-gray-300 text-center">Lượt xem</th>
+          <th class="px-4 py-2 border border-gray-300 text-center">Thể loại</th>
+          <th class="px-4 py-2 border border-gray-300 text-center">Hành động</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        @for(story of stories; track story.id) {
+        <tr class="hover:bg-gray-50">
+          <td>
+            <img [src]="story.image" class="w-20">
+          </td>
+          <td class="px-4 py-2 border border-gray-300">{{story.title}}</td>
+          <td class="px-4 py-2 border border-gray-300">{{story.author}}</td>
+          <td class="px-4 py-2 border border-gray-300">{{story.year}}</td>
+          <td class="px-4 py-2 border border-gray-300">{{story.views }} </td>
+          <td class="px-4 py-2 border border-gray-300">{{story.genre}}</td>
+          <td class="px-4 py-2 border border-gray-300">
+            <div class="flex gap-2 justify-center">
+              <button
+                class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
+                (click)="deleteStory(story.id)"
+              >
+                Delete
+              </button>
+              <button
+                class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                [routerLink]="['/edit', story.id]"
+              >
+                Edit
+              </button>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
+</div>
+

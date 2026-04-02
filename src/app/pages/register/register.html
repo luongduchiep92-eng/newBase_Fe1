@@ -1,0 +1,88 @@
+<div class="p-6 max-w-md mx-auto">
+    <h1 class="text-2xl font-semibold mb-6">Đăng ký</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submitForm()"
+        class="space-y-6">
+        <div>
+            <label class="block font-medium mb-1">Tên</label>
+            <input formControlName="name" type="text"
+                class="w-full border rounded-lg px-3 py-2" />
+
+            @if (registerForm.get('name')?.touched &&
+            registerForm.get('name')?.invalid) {
+            <div class="text-red-500 text-sm">
+                Tên không được để trống
+            </div>
+            }
+        </div>
+        <div>
+            <label class="block font-medium mb-1">Email</label>
+            <input formControlName="email" type="email"
+                class="w-full border rounded-lg px-3 py-2" />
+
+            @if (registerForm.get('email')?.touched &&
+            registerForm.get('email')?.errors?.['required']) {
+            <div class="text-red-500 text-sm">
+                Email không được để trống
+            </div>
+            }
+
+            @if (registerForm.get('email')?.errors?.['email']) {
+            <div class="text-red-500 text-sm">
+                Email không đúng định dạng
+            </div>
+            }
+        </div>
+        <div>
+            <label class="block font-medium mb-1">Mật khẩu</label>
+            <input formControlName="password" type="password"
+                class="w-full border rounded-lg px-3 py-2" />
+
+            @if (registerForm.get('password')?.errors?.['required']) {
+            <div class="text-red-500 text-sm">
+                Mật khẩu không được để trống
+            </div>
+            }
+
+            @if (registerForm.get('password')?.errors?.['minlength']) {
+            <div class="text-red-500 text-sm">
+                Mật khẩu tối thiểu 6 ký tự
+            </div>
+            }
+        </div>
+        <div>
+            <label class="block font-medium mb-1">Xác nhận mật khẩu</label>
+            <input formControlName="confirmPassword" type="password"
+                class="w-full border rounded-lg px-3 py-2" />
+
+            @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+            <div class="text-red-500 text-sm">
+                Vui lòng xác nhận mật khẩu
+            </div>
+            }
+
+            @if (registerForm.get('confirmPassword')?.errors?.['mismatch']) {
+            <div class="text-red-500 text-sm">
+                Mật khẩu không khớp
+            </div>
+            }
+        </div>
+        <button
+            type="submit"
+            [disabled]="registerForm.invalid || loading"
+            class="px-5 py-2 bg-blue-600 text-white rounded-lg w-full disabled:bg-gray-400">
+            {{ loading ? 'Đang xử lý...' : 'Đăng ký' }}
+        </button>
+        @if (success) {
+        <div class="text-green-600 text-center">
+            {{ success }}
+        </div>
+        }
+        @if (error) {
+        <div class="text-red-600 text-center">
+            {{ error }}
+        </div>
+        }
+
+    </form>
+</div>
