@@ -1,1 +1,37 @@
-<p>login works!</p>
+<form [formGroup]="loginForm">
+
+  <input type="text" formControlName="email" placeholder="Email" />
+
+  @if (f['email'].touched && f['email'].invalid) {
+    @if (f['email'].errors?.['required']) {
+      <small>Email không được bỏ trống</small>
+    }
+    @if (f['email'].errors?.['email']) {
+      <small>Email không hợp lệ</small>
+    }
+  }
+
+  <input type="password" formControlName="password" placeholder="Password" />
+
+  @if (f['password'].touched && f['password'].invalid) {
+    @if (f['password'].errors?.['required']) {
+      <small>Mật khẩu không được bỏ trống</small>
+    }
+    @if (f['password'].errors?.['minlength']) {
+      <small>Tối thiểu 6 ký tự</small>
+    }
+  }
+
+  @if (error) {
+    <p style="color:red">{{ error }}</p>
+  }
+
+  <button (click)="submitForm()" [disabled]="loading">
+    @if (loading) {
+      Đang đăng nhập...
+    } @else {
+      Đăng nhập
+    }
+  </button>
+
+</form>

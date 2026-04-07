@@ -38,7 +38,8 @@
             <input formControlName="password" type="password"
                 class="w-full border rounded-lg px-3 py-2" />
 
-            @if (registerForm.get('password')?.errors?.['required']) {
+            @if (registerForm.get('password')?.touched && 
+                registerForm.get('password')?.errors?.['required']) {
             <div class="text-red-500 text-sm">
                 Mật khẩu không được để trống
             </div>
@@ -55,7 +56,8 @@
             <input formControlName="confirmPassword" type="password"
                 class="w-full border rounded-lg px-3 py-2" />
 
-            @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+            @if (registerForm.get('confirmPassword')?.touched && 
+                registerForm.get('confirmPassword')?.errors?.['required']) {
             <div class="text-red-500 text-sm">
                 Vui lòng xác nhận mật khẩu
             </div>

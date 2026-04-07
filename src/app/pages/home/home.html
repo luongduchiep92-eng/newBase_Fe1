@@ -1,0 +1,9 @@
+@if (user) {
+  <h3>Xin chào {{ user.email }}</h3>
+
+  <button (click)="logout()">
+    Logout
+  </button>
+} @else {
+  <p>Chưa đăng nhập</p>
+}
